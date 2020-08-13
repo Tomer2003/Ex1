@@ -2,17 +2,8 @@
 
 
 # Matrix
-The Matrix library contains commands executed on a matrix such as:
-Create a new matrix
-Copy a deep copy to another matrix
-Free up the memory we have allocated to a specific matrix
-Return the height of the matrix
-Return the width of the matrix
-Put a new value in a particular cell in the matrix
-Return the value of a particular cell in the matrix
-add matrices
-Multiply matrices
-Multiply matrix by scalar
+The Matrix library contains commands that are executed on matrices such as: 
+ creating a matrix, arithmetic operations, returning values, deep copying, changing values and freeing up memory.
 
 
 
