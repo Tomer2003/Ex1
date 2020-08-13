@@ -9,4 +9,7 @@ The Matrix library contains commands that are executed on matrices such as:
 
 # ErrorCode
 The ErrorCode library contains commands that can check if there was an 
-error in one of the commands we made on the matrix and also return the error type
+error in one of the commands we made on the matrix and also return the error type.
+
+# Tests
+I did a test for every action that Matrix can do.
