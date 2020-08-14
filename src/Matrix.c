@@ -73,7 +73,7 @@ ErrorCode matrix_setValue(PMatrix matrix, uint32_t rowIndex, uint32_t colIndex, 
 		return NULL_ERROR;
 	}
 	if (rowIndex >= matrix->height || colIndex >= matrix->width) {
-		return SET_VALUE_ERROR;
+		return EXCEED_MATRIX_SIZE_ERROR;
 	}
 	matrix->matrixArr[rowIndex][colIndex] = value;
 	return ERROR_SUCCESS;
@@ -132,5 +132,16 @@ ErrorCode matrix_multiplyWithScalar(PMatrix matrix, double scalar) {
 			matrix->matrixArr[row][column] *= scalar;
 		}
 	}
+	return ERROR_SUCCESS;
+}
+
+ErrorCode matrix_getValue(CPMatrix matrix, uint32_t rowIndex, uint32_t colIndex, double* value){
+	if (matrix == NULL) {
+		return NULL_ERROR;
+	}
+	if (rowIndex >= matrix->height || colIndex >= matrix->width) {
+		return EXCEED_MATRIX_SIZE_ERROR;
+	}
+	*value = matrix->matrixArr[rowIndex][colIndex];
 	return ERROR_SUCCESS;
 }
