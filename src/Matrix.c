@@ -36,10 +36,14 @@ void matrix_destroy(PMatrix matrix) {
 }
 
 ErrorCode matrix_copy(PMatrix* result, CPMatrix source) {
+	ErrorCode matrixCreateCode = NULL;
 	if (source == NULL) {
 		return NULL_ERROR;
 	}
-	matrix_create(result, source->height, source->width);
+	matrixCreateCode = matrix_create(result, source->height, source->width);
+	if(matrixCreateCode != ERROR_SUCCESS){
+		return matrixCreateCode;
+	}
 	for (uint32_t row = 0; row < source->height; ++row) {
 		for (uint32_t column = 0; column < source->width; ++column) {
 			(*result)->matrixArr[row][column] = source->matrixArr[row][column];
@@ -76,13 +80,17 @@ ErrorCode matrix_setValue(PMatrix matrix, uint32_t rowIndex, uint32_t colIndex, 
 }
 
 ErrorCode matrix_add(PMatrix* result, CPMatrix lhs, CPMatrix rhs) {
+	ErrorCode matrixCreateCode = NULL;
 	if (lhs == NULL || rhs == NULL) {
 		return NULL_ERROR;
 	}
 	if (lhs->height != rhs->height || lhs->width != rhs->width) {
 		return MATRIX_ADD_ERROR;
 	}
-	matrix_create(result, lhs->height, lhs->width);
+	matrixCreateCode = matrix_create(result, lhs->height, lhs->width);
+	if(matrixCreateCode != ERROR_SUCCESS){
+		return matrixCreateCode;
+	}
 	for (uint32_t row = 0; row < lhs->height; ++row) {
 		for (uint32_t column = 0; column < lhs->width; ++column) {
 			(*result)->matrixArr[row][column] = lhs->matrixArr[row][column] + rhs->matrixArr[row][column];
@@ -93,13 +101,17 @@ ErrorCode matrix_add(PMatrix* result, CPMatrix lhs, CPMatrix rhs) {
 
 ErrorCode matrix_multiplyMatrices(PMatrix* result, CPMatrix lhs, CPMatrix rhs) {
 	double valueOfCell = 0;
+	ErrorCode matrixCreateCode = NULL;
 	if (lhs == NULL || rhs == NULL) {
 		return NULL_ERROR;
 	}
 	if (lhs->width != rhs->height) {
 		return MATRIX_MULT_ERROR;
 	}
-	matrix_create(result, lhs->height, rhs->width);
+	matrixCreateCode = matrix_create(result, lhs->height, rhs->width);
+	if(matrixCreateCode != ERROR_SUCCESS){
+		return matrixCreateCode;
+	}
 	for (uint32_t rowL = 0; rowL < lhs->height; ++rowL) {
 		for (uint32_t columnR = 0; columnR < rhs->width; ++columnR) {
 			for (uint32_t i = 0; i < rhs->height; ++i) {
