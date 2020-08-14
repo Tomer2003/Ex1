@@ -101,7 +101,7 @@ ErrorCode matrix_add(PMatrix* result, CPMatrix lhs, CPMatrix rhs) {
 
 ErrorCode matrix_multiplyMatrices(PMatrix* result, CPMatrix lhs, CPMatrix rhs) {
 	double valueOfCell = 0;
-	ErrorCode matrixCreateCode = NULL;
+	ErrorCode matrixCreateCode;
 	if (lhs == NULL || rhs == NULL) {
 		return NULL_ERROR;
 	}
