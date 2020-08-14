@@ -36,7 +36,7 @@ void matrix_destroy(PMatrix matrix) {
 }
 
 ErrorCode matrix_copy(PMatrix* result, CPMatrix source) {
-	ErrorCode matrixCreateCode = NULL;
+	ErrorCode matrixCreateCode;
 	if (source == NULL) {
 		return NULL_ERROR;
 	}
@@ -80,7 +80,7 @@ ErrorCode matrix_setValue(PMatrix matrix, uint32_t rowIndex, uint32_t colIndex, 
 }
 
 ErrorCode matrix_add(PMatrix* result, CPMatrix lhs, CPMatrix rhs) {
-	ErrorCode matrixCreateCode = NULL;
+	ErrorCode matrixCreateCode;
 	if (lhs == NULL || rhs == NULL) {
 		return NULL_ERROR;
 	}
