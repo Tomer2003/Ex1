@@ -4,15 +4,10 @@ project(matrix VERSION 0.1.0)
 set(C_STANDARD C99)
 add_compile_options(-Wall -Wextra -pedantic -Werror)
 
-add_library(
-    ErrorCode SHARED
-    ErrorCode.c
-    ErrorCode.h
-)
 
+add_library(matrix SHARED ErrorCode.c Matrix.c)
 
-add_library(
-    Matrix SHARED
-    Matrix.c
-    Matrix.h
-)
+set(CPACK_PROJECT_NAME ${PROJECT_NAME})
+set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
+include(CPack)
+
