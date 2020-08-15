@@ -56,7 +56,7 @@ ErrorCode matrix_copy(PMatrix* result, CPMatrix source) {
 }
 
 ErrorCode matrix_getHeight(CPMatrix matrix, uint32_t* result) {
-	if (matrix == NULL) {
+	if (matrix == NULL || result == NULL) {
 		return NULL_ERROR;
 	}
 	*result = matrix->height;
@@ -64,7 +64,7 @@ ErrorCode matrix_getHeight(CPMatrix matrix, uint32_t* result) {
 }
 
 ErrorCode matrix_getWidth(CPMatrix matrix, uint32_t* result) {
-	if (matrix == NULL) {
+	if (matrix == NULL || result == NULL) {
 		return NULL_ERROR;
 	}
 	*result = matrix->width;
@@ -139,7 +139,7 @@ ErrorCode matrix_multiplyWithScalar(PMatrix matrix, double scalar) {
 }
 
 ErrorCode matrix_getValue(CPMatrix matrix, uint32_t rowIndex, uint32_t colIndex, double* value){
-	if (matrix == NULL) {
+	if (matrix == NULL || value == NULL) {
 		return NULL_ERROR;
 	}
 	if (rowIndex >= matrix->height || colIndex >= matrix->width) {
