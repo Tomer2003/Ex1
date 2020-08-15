@@ -20,6 +20,8 @@ const char* error_getErrorMessage(ErrorCode code) {
 			return "ERROR: The matrix that given is null!";
 		case OUT_OF_MEMORY_ERROR:
 			return "ERROR: Allocation memory failed(in matrix_create function)!";
+		case MATRIX_SIZE_NOT_APPOPRIATE:
+			return 	"The height or width given in create matrix function to the matrix is 0!";
 		default:
 			return "Unexpected error";
 	}

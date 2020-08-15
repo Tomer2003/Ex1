@@ -10,6 +10,9 @@ ErrorCode matrix_create(PMatrix* matrix, uint32_t height, uint32_t width) {
 	if (*matrix == NULL) {
 		return OUT_OF_MEMORY_ERROR;
 	}
+	if(height == 0 || width == 0){
+		return MATRIX_SIZE_NOT_APPOPRIATE;
+	}
 	(*matrix)->height = height;
 	(*matrix)->width = width;
 	(*matrix)->matrixArr = (double**)malloc(sizeof(double*) * height);
