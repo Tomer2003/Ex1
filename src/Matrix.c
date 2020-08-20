@@ -2,26 +2,37 @@
 #include <stdlib.h>
 #include "Matrix.h"
 
+typedef struct Matrix {
+	double **matrixArr;
+	uint32_t height;
+	uint32_t width;
+}Matrix;
 
 
-
-ErrorCode matrix_create(PMatrix* matrix, uint32_t height, uint32_t width) {
+ErrorCode matrix_create(PMatrix* matrix, const uint32_t height, const uint32_t width) {
 	*matrix = (PMatrix)malloc(sizeof(Matrix));
 	if (*matrix == NULL) {
 		return OUT_OF_MEMORY_ERROR;
 	}
 	if(height == 0 || width == 0){
+		free(*matrix);
 		return MATRIX_SIZE_NOT_APPOPRIATE;
 	}
 	(*matrix)->height = height;
 	(*matrix)->width = width;
 	(*matrix)->matrixArr = (double**)malloc(sizeof(double*) * height);
 	if ((*matrix)->matrixArr == NULL) {
+		free(*matrix);
 		return OUT_OF_MEMORY_ERROR;
 	}
 	for (uint32_t i = 0; i < height; ++i) {
 		(*matrix)->matrixArr[i] = (double*)calloc(width, sizeof(double));
 		if ((*matrix)->matrixArr[i] == NULL) {
+			for(uint32_t j = 0; j < i; ++j){
+				free((*matrix)->matrixArr[j]);
+			}
+			free((*matrix)->matrixArr);
+			free(*matrix);
 			return OUT_OF_MEMORY_ERROR;
 		}
 	}
@@ -71,7 +82,7 @@ ErrorCode matrix_getWidth(CPMatrix matrix, uint32_t* result) {
 	return ERROR_SUCCESS;
 }
 
-ErrorCode matrix_setValue(PMatrix matrix, uint32_t rowIndex, uint32_t colIndex, double value) {
+ErrorCode matrix_setValue(PMatrix matrix, const uint32_t rowIndex, const uint32_t colIndex, double value) {
 	if (matrix == NULL) {
 		return NULL_ERROR;
 	}
@@ -126,7 +137,7 @@ ErrorCode matrix_multiplyMatrices(PMatrix* result, CPMatrix lhs, CPMatrix rhs) {
 	return ERROR_SUCCESS;
 }
 
-ErrorCode matrix_multiplyWithScalar(PMatrix matrix, double scalar) {
+ErrorCode matrix_multiplyWithScalar(PMatrix matrix, const double scalar) {
 	if (matrix == NULL) {
 		return NULL_ERROR;
 	}
@@ -138,7 +149,7 @@ ErrorCode matrix_multiplyWithScalar(PMatrix matrix, double scalar) {
 	return ERROR_SUCCESS;
 }
 
-ErrorCode matrix_getValue(CPMatrix matrix, uint32_t rowIndex, uint32_t colIndex, double* value){
+ErrorCode matrix_getValue(CPMatrix matrix, const uint32_t rowIndex, const uint32_t colIndex, double* value){
 	if (matrix == NULL || value == NULL) {
 		return NULL_ERROR;
 	}

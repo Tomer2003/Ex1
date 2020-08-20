@@ -5,16 +5,8 @@
 #include "ErrorCode.h"
 
 // The implementation of the struct is up to you
-struct Matrix {
-	double **matrixArr;
-	uint32_t height;
-	uint32_t width;
-};
-
 typedef struct Matrix* PMatrix;
 typedef const struct Matrix* CPMatrix;
-typedef struct Matrix Matrix;
-
 
 /**
  * @brief Creates a new matrix of a given height an width,
