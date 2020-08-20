@@ -114,7 +114,7 @@ ErrorCode matrix_add(PMatrix* result, CPMatrix lhs, CPMatrix rhs) {
 }
 
 ErrorCode matrix_multiplyMatrices(PMatrix* result, CPMatrix lhs, CPMatrix rhs) {
-	double valueOfCell = 0;
+	double valueOfCell = 0.0;
 	ErrorCode matrixCreateCode;
 	if (lhs == NULL || rhs == NULL) {
 		return NULL_ERROR;
