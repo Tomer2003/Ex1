@@ -132,6 +132,7 @@ ErrorCode matrix_multiplyMatrices(PMatrix* result, CPMatrix lhs, CPMatrix rhs) {
 				valueOfCell += lhs->matrixArr[rowL][i] * rhs->matrixArr[i][columnR];
 			}
 			(*result)->matrixArr[rowL][columnR] = valueOfCell;
+			valueOfCell = 0;
 		}
 	}
 	return ERROR_SUCCESS;
